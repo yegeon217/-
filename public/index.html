@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>말끔 시간표</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>말끔 시간표</h1>
+      <p class="subtitle">우리 학교 시간표를 깔끔하게</p>
+    </header>
+
+    <section id="search-view" class="card">
+      <div class="field-row">
+        <input id="school-input" type="text" placeholder="학교 이름을 입력하세요 (예: 경기고등학교)" />
+        <button id="search-btn">검색</button>
+      </div>
+
+      <ul id="school-list" class="school-list hidden"></ul>
+
+      <p id="status-msg" class="status-msg"></p>
+    </section>
+
+    <section id="timetable-view" class="hidden">
+      <div id="timetable-layout" class="timetable-layout">
+        <div class="timetable-main card">
+          <div class="timetable-header">
+            <button id="back-btn" class="ghost-btn">&larr; 다시 검색</button>
+            <button id="school-title-btn" class="school-title-btn" type="button">
+              <span class="school-title-text">
+                <span id="tt-school-name"></span>
+                <span id="tt-class-name"></span>
+              </span>
+              <span class="chevron">&rsaquo;</span>
+            </button>
+          </div>
+
+          <div class="control-bar">
+            <div class="week-tabs">
+              <button id="week-this" class="week-tab active" type="button">이번주</button>
+              <button id="week-next" class="week-tab" type="button">다음주</button>
+            </div>
+            <div class="select-group">
+              <select id="grade-select"></select>
+              <select id="class-select"></select>
+            </div>
+          </div>
+          <p id="week-label" class="week-label"></p>
+
+          <div class="table-wrap">
+            <table id="timetable">
+              <thead>
+                <tr>
+                  <th class="period-col">교시</th>
+                  <th class="weekday-col" data-weekday="1">월</th>
+                  <th class="weekday-col" data-weekday="2">화</th>
+                  <th class="weekday-col" data-weekday="3">수</th>
+                  <th class="weekday-col" data-weekday="4">목</th>
+                  <th class="weekday-col" data-weekday="5">금</th>
+                </tr>
+              </thead>
+              <tbody id="timetable-body"></tbody>
+            </table>
+          </div>
+
+          <div class="legend">
+            <span class="legend-item"><span class="legend-swatch changed"></span>변동된 수업</span>
+            <span class="legend-item hint">요일을 클릭하면 급식 정보를 볼 수 있어요</span>
+          </div>
+
+          <div id="meal-info" class="meal-info hidden">
+            <div class="meal-info-header">
+              <span id="meal-date-label" class="meal-date-label"></span>
+              <button id="meal-close" class="meal-close" type="button">&times;</button>
+            </div>
+            <div id="meal-content" class="meal-content"></div>
+          </div>
+
+          <p id="tt-status-msg" class="status-msg"></p>
+        </div>
+
+        <aside id="info-sidebar" class="info-sidebar">
+          <div class="sidebar-inner">
+            <button id="sidebar-close" class="sidebar-close" type="button">&times;</button>
+            <h2 id="sidebar-school-name" class="sidebar-title"></h2>
+
+            <div class="stat-grid">
+              <div class="stat-box">
+                <span class="stat-label">학생수</span>
+                <span class="stat-value" id="stat-students">-</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">교원 1인당 학생수</span>
+                <span class="stat-value" id="stat-ratio">-</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">성별 학생수</span>
+                <span class="stat-value" id="stat-gender">-</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">방과후학교</span>
+                <span class="stat-value badge" id="stat-afterschool">-</span>
+              </div>
+            </div>
+
+            <div class="calendar-box">
+              <div class="calendar-header">
+                <button id="cal-prev" class="cal-nav" type="button">&lsaquo;</button>
+                <span id="cal-month-label" class="cal-month-label"></span>
+                <button id="cal-next" class="cal-nav" type="button">&rsaquo;</button>
+              </div>
+              <div class="calendar-weekdays">
+                <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+              </div>
+              <div id="calendar-grid" class="calendar-grid"></div>
+              <p class="calendar-note">학사일정 연동 준비 중</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
