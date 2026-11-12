@@ -1,7 +1,3 @@
 {
-  "outputDirectory": "public",
-  "regions": ["icn1"],
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" }
-  ]
+  "regions": ["icn1"]
 }
