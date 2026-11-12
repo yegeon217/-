@@ -532,7 +532,17 @@ function handleVerifySubmit() {
   verifyInput.style.opacity = '0';
   setTimeout(() => verifyInput.classList.add('hidden'), 400);
 
-  if (value === '정예건') {
+  const timetableShown = !timetableView.classList.contains('hidden');
+  if (value === '벽돌깨기' && timetableShown && typeof window.startBrickGame === 'function') {
+    madeByYg.classList.remove('solid-red');
+    madeByYg.textContent = 'Made By YG';
+    const p = cornerPos();
+    setYgPos(p.left, p.top, p.fontSize);
+    madeByYg.style.opacity = '1';
+    appRoot.classList.remove('yg-hidden');
+    ygState = 'idle';
+    setTimeout(() => window.startBrickGame(), 450);
+  } else if (value === '정예건') {
     madeByYg.style.opacity = '0';
     rainbowBg.classList.add('active');
     launchFireworks(5000);

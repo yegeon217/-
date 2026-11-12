@@ -101,6 +101,12 @@ app.get('/api/calendar', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`서버 실행 중: http://localhost:${PORT}`);
-});
+// 로컬에서 `node server.js`로 실행할 때만 직접 포트를 연다.
+// Vercel에서는 api/index.js가 이 app을 가져가 서버리스 함수로 실행한다.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`서버 실행 중: http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
